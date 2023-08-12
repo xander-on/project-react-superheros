@@ -6,6 +6,7 @@ export const PrivateRoute = ({ children }) => {
 
     const { logged } = useContext( AuthContext );
     const { pathname, search } = useLocation();
+    const baseRoute = useContext( AuthContext ).baseRoute ?? '';
 
     const lasPath = pathname + search;
     localStorage.setItem('lastPath', lasPath);
@@ -13,5 +14,5 @@ export const PrivateRoute = ({ children }) => {
 
     return (logged)
         ? children
-        : <Navigate to="/login" />
+        : <Navigate to={`${baseRoute}/login`} />
 }
