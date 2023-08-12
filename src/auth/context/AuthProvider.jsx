@@ -41,7 +41,8 @@ export const AuthProvider = ({ children }) => {
             ...authState,
             //methods
             login,
-            logout
+            logout,
+            baseRoute:'/superheros'
         }}>
         { children }
         </AuthContext.Provider>

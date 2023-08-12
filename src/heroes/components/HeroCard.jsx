@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../auth';
 
 export const HeroCard = ({
     id,
@@ -9,6 +11,7 @@ export const HeroCard = ({
     characters,
 }) => {
 
+    const baseRoute = useContext( AuthContext ).baseRoute ?? '';
     const heroImageUrl = `/assets/heroes/${ id }.jpg`;
 
     const CharacterByHero = ({ alter_ego, characters }) => 
@@ -39,7 +42,7 @@ export const HeroCard = ({
                                 <small className="text-muted">{ first_appearance }</small>
                             </p>
 
-                            <Link to={`/hero/${ id }`}>More...</Link>
+                            <Link to={`${baseRoute}/hero/${ id }`}>More...</Link>
                         </div>
                     </div>
 

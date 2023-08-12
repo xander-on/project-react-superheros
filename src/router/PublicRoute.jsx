@@ -5,8 +5,10 @@ import { AuthContext } from "../auth/context";
 export const PublicRoute = ({ children }) => {
 
     const { logged } = useContext( AuthContext );
+    const baseRoute = useContext( AuthContext ).baseRoute ?? '';
+
 
     return (!logged)
         ? children
-        : <Navigate to="marvel" />
+        : <Navigate to={`${baseRoute}/marvel`} />
 }

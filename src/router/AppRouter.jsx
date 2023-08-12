@@ -1,24 +1,25 @@
 import { Route, Routes } from "react-router-dom";
 
-import { LoginPage }    from "../auth";
+import { AuthContext, LoginPage }    from "../auth";
 import { HeroesRoutes } from "../heroes";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute }  from "./PublicRoute";
+import { useContext }   from "react";
 
 export const AppRouter = () => {
 
-    // const baseRoute = "heroes";
+    const baseRoute = useContext( AuthContext ).baseRoute ?? '';
 
     return (
         <Routes>
 
-            <Route path="/login" element={
+            <Route path={`${baseRoute}/login`} element={
                 <PublicRoute>
                     <LoginPage/>
                 </PublicRoute>
             } />
 
-            <Route path="/*" element={
+            <Route path={`${baseRoute}/*`} element={
                 <PrivateRoute>
                     <HeroesRoutes/>
                 </PrivateRoute>
